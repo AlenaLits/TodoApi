@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>ToDo SPA</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1>Список дел (ToDo List)</h1>
+
+
+    <h3>Регистрация</h3>
+    <form id="registerForm" onsubmit="register(); return false;">
+        <input type="email" id="register-email" placeholder="Email" required />
+        <input type="password" id="register-password" placeholder="Пароль" required />
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <h3>Вход</h3>
+    <form id="loginForm" onsubmit="login(); return false;">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Пароль" required />
+        <button type="submit">Войти</button>
+    </form>
+
+    <p id="authMessage"></p>
+
+    <h3>Добавить задачу</h3>
+    <form id="addForm" onsubmit="addItem(); return false;">
+        <input type="text" id="add-name" placeholder="Новая задача" required />
+        <select id="add-category">
+            <option value="">-- Выберите категорию --</option>
+        </select>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <h3>Добавить категорию</h3>
+    <form id="addCategoryForm" onsubmit="addCategory(); return false;">
+        <input type="text" id="add-category-name" placeholder="Новая категория" required />
+        <button type="submit">Добавить категорию</button>
+    </form>
+
+    <h3>Редактировать задачу</h3>
+    <form id="editForm" onsubmit="updateItem(); return false;" style="display:none;">
+        <input type="hidden" id="edit-id" />
+        <input type="checkbox" id="edit-isComplete" />
+        <select id="edit-category">
+            <option value="">-- Выберите категорию --</option>
+        </select>
+        <input type="text" id="edit-name" required />
+        <button type="submit">Сохранить</button>
+        <button type="button" onclick="closeEditForm()">Отмена</button>
+    </form>
+
+    <p id="counter"></p>
+
+    <div id="filter-buttons">
+        <button onclick="setFilter('all')" id="filter-all" class="active">Все</button>
+        <button onclick="setFilter('incomplete')" id="filter-incomplete">Невыполненные</button>
+        <button onclick="setFilter('complete')" id="filter-complete">Выполненные</button>
+    </div>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Выполнено?</th>
+                <th>Название задачи</th>
+                <th>Категория</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script src="js/site.js"></script>
+    <script>
+        getItems();
+    </script>
+</body>
+</html>
